@@ -17,6 +17,8 @@
 uv sync
 ```
 
+然后，将已准备好的 Skill 文件放置到项目根目录下的 `skills` 文件夹中。
+
 ## 启动项目
 
 请确保 Python 版本为 Python 3.11。过高或过低的 Python 版本可能存在问题。
