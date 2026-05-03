@@ -35,12 +35,18 @@ async def post_chat(thread_id: str, request: ChatRequest):
             {"messages": [{"role": "user", "content": request.message}]}, config=config
         )
 
+        has_finished = False
+        for msg in result["messages"]:
+            if msg.type == "tool" and msg.content == "INTERVIEW_FINISHED_SIGNAL":
+                has_finished = True
+                break
+
         messages = [
             {"role": msg.type, "content": msg.content}
             for msg in result["messages"]
         ]
 
-        return {"thread_id": thread_id, "messages": messages}
+        return {"thread_id": thread_id, "messages": messages, "has_finished": has_finished}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
