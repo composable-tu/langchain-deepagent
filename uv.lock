@@ -867,6 +867,7 @@ dependencies = [
     { name = "langchainhub" },
     { name = "langgraph" },
     { name = "langgraph-checkpoint-sqlite" },
+    { name = "pydantic" },
     { name = "pyrefly" },
     { name = "python-dotenv" },
 ]
@@ -888,6 +889,7 @@ requires-dist = [
     { name = "langchainhub", specifier = ">=0.1.21" },
     { name = "langgraph", specifier = ">=1.1.6" },
     { name = "langgraph-checkpoint-sqlite", specifier = ">=3.0.3" },
+    { name = "pydantic", specifier = ">=2.12.5" },
     { name = "pyrefly", specifier = ">=0.45.0" },
     { name = "python-dotenv", specifier = ">=1.2.2" },
 ]

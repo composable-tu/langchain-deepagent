@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from pathlib import Path
+from typing import Optional
 
 import dotenv
 from deepagents import create_deep_agent
@@ -12,7 +13,15 @@ from langgraph.graph.state import CompiledStateGraph
 
 dotenv.load_dotenv()
 
+_agent_instance: Optional[CompiledStateGraph] = None
+
 def get_agent() -> CompiledStateGraph:
+    global _agent_instance
+    if _agent_instance is None:
+        _agent_instance = _create_agent()
+    return _agent_instance
+
+def _create_agent() -> CompiledStateGraph:
 
     system_prompt = """面试 Skill 文件位于：/skills/。
     请在调用 read_file 时使用完全相同的虚拟路径。"""
@@ -41,3 +50,5 @@ def get_agent() -> CompiledStateGraph:
     )
 
     return agent
+
+get_agent()
