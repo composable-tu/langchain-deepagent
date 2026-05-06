@@ -17,8 +17,10 @@ async def get_chat_history(thread_id: str):
     Returns:
         dict: 包含以下字段的字典：
             - thread_id (str): 线程ID
-            - messages (list): 消息列表，每个消息包含 role 和 content
-            - status (str, optional): 状态标识，如 "no_history" 表示无历史记录
+            - messages (list): 完整的对话历史列表，每个消息包含：
+                - role (str): 消息角色（"human" 或 "ai"）
+                - content (str): 消息内容
+            - has_finished (bool): 对话是否已结束
     """
     config = {"configurable": {"thread_id": thread_id}}
 
@@ -29,8 +31,14 @@ async def get_chat_history(thread_id: str):
     if not state.values or "messages" not in state.values:
         return {"thread_id": thread_id, "messages": [], "status": "no_history"}
 
+    has_finished = False
+    for msg in state.values["messages"]:
+        if msg.type == "tool" and msg.content == "INTERVIEW_FINISHED_SIGNAL":
+            has_finished = True
+            break
+
     messages = [
         {"role": msg.type, "content": msg.content} for msg in state.values["messages"]
     ]
 
-    return {"thread_id": thread_id, "messages": messages}
+    return {"thread_id": thread_id, "messages": messages, "has_finished": has_finished}

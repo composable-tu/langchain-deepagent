@@ -31,7 +31,7 @@ def _create_agent() -> CompiledStateGraph:
 
     system_prompt = """面试 Skill 文件位于：/skills/。
     请在调用 read_file 时使用完全相同的虚拟路径。
-    当你认为面试已经结束，或者可以得出最终结论时，请调用 finish_interview 工具，然后输出你对面试者的详细评价。"""
+    当你认为面试已经结束，或者可以得出最终结论时，请调用 finish_interview 工具，**然后输出你对面试者的详细评价**。"""
 
     baseChatModel: BaseChatModel = ChatOpenAI(
         temperature=0.6,

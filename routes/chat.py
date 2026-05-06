@@ -27,12 +27,14 @@ async def post_chat(thread_id: str, request: ChatRequest):
             - messages (list): 完整的对话历史列表，每个消息包含：
                 - role (str): 消息角色（"human" 或 "ai"）
                 - content (str): 消息内容
+            - has_finished (bool): 对话是否已结束
     """
     try:
         config = {"configurable": {"thread_id": thread_id}}
 
         result = get_agent().invoke(
-            {"messages": [{"role": "user", "content": request.message}]}, config=config
+            {"messages": [{"role": "user", "content": request.message}]},
+            config=config
         )
 
         has_finished = False
