@@ -35,7 +35,7 @@ def _create_agent() -> CompiledStateGraph:
 
     baseChatModel: BaseChatModel = ChatOpenAI(
         temperature=0.6,
-        model="GLM-4.5-Flash",
+        model_name="GLM-4.5-Flash",
         api_key=os.getenv("OPENAI_API_KEY"),
         base_url=os.getenv("OPENAI_API_URL"),
     )
