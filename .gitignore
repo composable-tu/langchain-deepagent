@@ -164,6 +164,6 @@ cython_debug/
 
 /skills/
 !/skills/.gitkeep
-/checkpoints.db
-/checkpoints.db-shm
-/checkpoints.db-wal
+checkpoints.db
+checkpoints.db-shm
+checkpoints.db-wal

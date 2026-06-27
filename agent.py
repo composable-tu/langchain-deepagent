@@ -50,7 +50,7 @@ def _create_agent() -> CompiledStateGraph:
         system_prompt=system_prompt,
         backend=FilesystemBackend(root_dir=project_dir.as_posix(), virtual_mode=True),
         tools=[finish_interview],
-        skills=[(project_dir / "skills/").as_posix()],
+        skills=["/skills/"],
         interrupt_on={
             "read_file": False,
         },
